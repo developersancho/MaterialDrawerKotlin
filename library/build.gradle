@@ -1,0 +1,39 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+apply from: '../testformatter.gradle'
+
+ext {
+    PUBLISH_GROUP_ID = 'co.zsmb'
+    PUBLISH_ARTIFACT_ID = 'materialdrawer-kt'
+    PUBLISH_VERSION = '1.2.2'
+}
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.0"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 27
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    api('com.mikepenz:materialdrawer:6.0.2@aar') {
+        transitive = true
+    }
+    implementation "com.android.support:appcompat-v7:$support_lib_version"
+    implementation "com.android.support:recyclerview-v7:$support_lib_version"
+    implementation "com.android.support:support-annotations:$support_lib_version"
+    implementation "com.android.support:design:$support_lib_version"
+}
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
